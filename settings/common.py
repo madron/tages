@@ -1,5 +1,8 @@
+import os
 from .default import *
 
+
+SECRET_KEY = os.getenv('SECRET_KEY', 'changeme')
 
 INSTALLED_APPS = [
     # django
