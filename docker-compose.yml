@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13.0-alpine
+    network_mode: default
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  django:
+    build: .
+    network_mode: default
+    environment:
+      - DEBUG=True
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - REDIS_HOST=redis
+    depends_on:
+      - "db"
+    links:
+      - "db:db"
+
+  nginx:
+    build: .
+    network_mode: default
+    depends_on:
+      - "django"
+    links:
+      - "django:django"
+    command: nginx
+
+
+volumes:
+  db:
+    driver: local

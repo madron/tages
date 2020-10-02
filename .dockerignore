@@ -1,0 +1,10 @@
+*.sqlite3
+**/*.pyc
+allegati
+media
+static
+docker-compose*
+.coverage
+.gitlab-ci.yml
+.hgignore
+.tox
