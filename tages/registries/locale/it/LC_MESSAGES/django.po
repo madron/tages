@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-18 07:20+0000\n"
+"PO-Revision-Date: 2016-08-24 13:29+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: registries/__init__.py:10
+msgid "Registries"
+msgstr "Anagrafe"
+
+#: registries/admin.py:34 registries/models.py:199
+msgid "Registered office"
+msgstr "Sede legale"
+
+#: registries/admin.py:54
+msgid "Other locations"
+msgstr "Altre sedi"
+
+#: registries/fields.py:10
+msgid "Enter a valid land registry code."
+msgstr "Inserire un codice catastale valido"
+
+#: registries/filters.py:6 registries/models.py:103 registries/models.py:193
+msgid "active"
+msgstr "attiva"
+
+#: registries/filters.py:11 registries/filters.py:53
+msgid "Yes"
+msgstr "Si"
+
+#: registries/filters.py:12 registries/filters.py:54
+msgid "No"
+msgstr "No"
+
+#: registries/filters.py:13
+msgid "All"
+msgstr "Tutte"
+
+#: registries/filters.py:48 registries/models.py:151
+msgid "land registry code"
+msgstr "codice catastale"
+
+#: registries/forms.py:77
+msgid "VAT number lined up for organizations."
+msgstr "Partita IVA riservata ad enti ed associazioni"
+
+#: registries/models.py:12
+msgid "Private"
+msgstr "Privato"
+
+#: registries/models.py:13
+msgid "Company"
+msgstr "Azienda"
+
+#: registries/models.py:14
+msgid "Individual company"
+msgstr "Ditta individuale"
+
+#: registries/models.py:15
+msgid "Public administration"
+msgstr "Pubblica amministrazione"
+
+#: registries/models.py:16
+msgid "Organization"
+msgstr "Enti ed associazioni"
+
+#: registries/models.py:21 registries/models.py:98
+msgid "id"
+msgstr "codice"
+
+#: registries/models.py:22 registries/models.py:46 registries/models.py:143
+#: registries/models.py:201
+msgid "name"
+msgstr "nome"
+
+#: registries/models.py:23 registries/models.py:44
+msgid "business name"
+msgstr "ragione sociale"
+
+#: registries/models.py:27
+msgid "company"
+msgstr "azienda"
+
+#: registries/models.py:28
+msgid "companies"
+msgstr "aziende"
+
+#: registries/models.py:42
+msgid "type"
+msgstr "tipo"
+
+#: registries/models.py:43 registries/models.py:129 registries/models.py:145
+msgid "country"
+msgstr "nazione"
+
+#: registries/models.py:45
+msgid "last_name"
+msgstr "cognome"
+
+#: registries/models.py:47
+msgid "description"
+msgstr "descrizione"
+
+#: registries/models.py:48
+msgid "customer"
+msgstr "cliente"
+
+#: registries/models.py:49
+msgid "supplier"
+msgstr "fornitore"
+
+#: registries/models.py:50
+msgid "vat number"
+msgstr "partita iva"
+
+#: registries/models.py:51
+msgid "social security number"
+msgstr "codice fiscale"
+
+#: registries/models.py:53
+msgid "external id"
+msgstr "id esterno"
+
+#: registries/models.py:54
+msgid "deactivation date"
+msgstr "data disattivazione"
+
+#: registries/models.py:56
+msgid "insert date"
+msgstr "data inserimento"
+
+#: registries/models.py:63 registries/models.py:114 registries/models.py:140
+#: registries/models.py:221
+msgid "registry"
+msgstr "anagrafica"
+
+#: registries/models.py:64
+msgid "registries"
+msgstr "anagrafiche"
+
+#: registries/models.py:69 registries/models.py:177
+#, python-format
+msgid "%(description)s (Deactivated)"
+msgstr "%(description)s (Disattivata)"
+
+#: registries/models.py:120
+msgid "services"
+msgstr "servizi"
+
+#: registries/models.py:125
+msgid "open tickets"
+msgstr "ticket aperti"
+
+#: registries/models.py:142 registries/models.py:262
+msgid "registered office"
+msgstr "sede legale"
+
+#: registries/models.py:146
+msgid "province"
+msgstr "provincia"
+
+#: registries/models.py:147
+msgid "city"
+msgstr "città"
+
+#: registries/models.py:148
+msgid "address"
+msgstr "indirizzo"
+
+#: registries/models.py:149
+msgid "street number"
+msgstr "civico"
+
+#: registries/models.py:150
+msgid "zip code"
+msgstr "cap"
+
+#: registries/models.py:153
+msgid "phone number"
+msgstr "telefono"
+
+#: registries/models.py:154
+msgid "fax number"
+msgstr "fax"
+
+#: registries/models.py:155 registries/models.py:216
+msgid "email"
+msgstr "email"
+
+#: registries/models.py:156
+msgid "pec"
+msgstr "pec"
+
+#: registries/models.py:157
+msgid "url"
+msgstr "url"
+
+#: registries/models.py:159
+msgid "notes"
+msgstr "note"
+
+#: registries/models.py:166 registries/models.py:211
+msgid "location"
+msgstr "sede"
+
+#: registries/models.py:167
+msgid "locations"
+msgstr "sedi"
+
+#: registries/models.py:263
+msgid "registered offices"
+msgstr "sedi legali"
+
+#: registries/models.py:282
+msgid "other location"
+msgstr "altra sede"
+
+#: registries/models.py:283
+msgid "other locations"
+msgstr "altre sedi"

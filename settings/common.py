@@ -12,6 +12,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third party
+    'reversion',
+    'import_export',
     # tages
     'tages.authentication',
+    'tages.countries',
+    'tages.registries',
+    'tages.utils',
 ]

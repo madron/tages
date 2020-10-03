@@ -6,11 +6,12 @@ coverage html
 
 ## Docker compose
 
+Run:
 ```
 docker-compose up --build
 ````
 
-### Add admin user
+Add admin user:
 ```
 docker-compose exec django python3 /src/manage.py loaddata authentication_admin
 ```

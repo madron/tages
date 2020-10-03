@@ -1,0 +1,20 @@
+[
+{
+    "model": "registries.registry",
+    "pk": 1,
+    "fields": {
+        "type": "private",
+        "country": "US",
+        "business_name": "",
+        "last_name": "Black",
+        "first_name": "Joe",
+        "description": "Black Joe",
+        "vat_number": "",
+        "social_security_number": "",
+        "customer": true,
+        "supplier": false,
+        "external_id": "",
+        "deactivation_date": null
+    }
+}
+]
