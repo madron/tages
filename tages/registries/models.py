@@ -122,3 +122,27 @@ class Registry(models.Model):
     @property
     def full_address(self):
         return '{} {}, {}'.format(self.address, self.street_number, self.city)
+
+
+class Child(models.Model):
+    first_name = models.CharField(_('first name'), max_length=200, db_index=True)
+    last_name = models.CharField(_('last name'), max_length=200, db_index=True)
+    description = models.CharField(_('description'), max_length=200, db_index=True, editable=False, default='')
+    parent_1 = models.ForeignKey(Registry, verbose_name=_('parent 1'), on_delete=models.RESTRICT,
+                                 related_name='parent_1_childs', db_index=True)
+    parent_2 = models.ForeignKey(Registry, verbose_name=_('parent 2'), on_delete=models.RESTRICT,
+                                 blank=True, null=True, related_name='parent_2_childs', db_index=True)
+
+    class Meta:
+        verbose_name = _('child')
+        verbose_name_plural = _('children')
+        ordering = ['last_name', 'first_name']
+
+    def __str__(self):
+        return str(self.description)
+
+    def save(self, *args, **kwargs):
+        # Description
+        self.description = ' '.join((self.first_name, self.last_name)).strip()
+        # Save
+        super().save(*args, **kwargs)

@@ -105,3 +105,20 @@ class RegistryForm(forms.ModelForm):
             )
             return field[registry_type].clean(value)
         return value
+
+
+class ChildForm(forms.ModelForm):
+    field_order = [
+        'first_name',
+        'last_name',
+        'parent_1',
+        'parent_2',
+    ]
+
+    class Meta:
+        model = models.Child
+        fields = ('__all__')
+        widgets = dict(
+            first_name=forms.TextInput(attrs={'size': '15'}),
+            last_name=forms.TextInput(attrs={'size': '15'}),
+        )

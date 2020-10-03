@@ -129,3 +129,52 @@ class RegistryAdminTest(TestCase):
         response = self.client.get(self.list)
         self.assertContains(response, 'Insert date')
         self.assertContains(response, 'May 20, 2017')
+
+
+class ChildAdminTest(TestCase):
+    def setUp(self):
+        user = UserFactory()
+        self.assertTrue(self.client.login(username='test', password='pass'))
+        self.obj = factories.ChildFactory()
+        self.name = 'admin:registries_child'
+        self.list = reverse('{}_changelist'.format(self.name))
+
+    def test_list(self):
+        response = self.client.get(self.list)
+        self.assertEqual(response.status_code, 200)
+
+    def test_search(self):
+        data = dict(q='text')
+        response = self.client.get(self.list, data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_add(self):
+        url = reverse('{}_add'.format(self.name))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_detail(self):
+        url = reverse('{}_change'.format(self.name), args=(self.obj.pk,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete(self):
+        url = reverse('{}_delete'.format(self.name), args=(self.obj.pk,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_autocomplete(self):
+        factories.ChildFactory(last_name='aaa', first_name='Bob')
+        factories.ChildFactory(last_name='bbb', first_name='Bob')
+        data = dict(term='aa')
+        url = reverse('{}_autocomplete'.format(self.name))
+        response = self.client.get(url, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'aaa')
+        self.assertNotContains(response, 'bbb')
+
+    def test_autocomplete_not_logged_in(self):
+        self.client.logout()
+        url = reverse('{}_autocomplete'.format(self.name))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)

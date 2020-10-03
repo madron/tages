@@ -1,6 +1,6 @@
 from django.test import TestCase
 from . import factories
-from ..forms import RegistryForm
+from ..forms import RegistryForm, ChildForm
 
 
 class RegistryFormTest(TestCase):
@@ -278,3 +278,19 @@ class RegistryFormItPrivateTest(TestCase):
         self.assertEqual(form.errors['last_name'], ['This field is required.'])
         self.assertEqual(form.errors['first_name'], ['This field is required.'])
         self.assertEqual(len(form.errors), 2)
+
+
+class ChildFormTest(TestCase):
+    def test_clean_ko(self):
+        data = dict()
+        form = ChildForm(data)
+        self.assertEqual(form.errors['first_name'], ['This field is required.'])
+        self.assertEqual(form.errors['last_name'], ['This field is required.'])
+        self.assertEqual(form.errors['parent_1'], ['This field is required.'])
+        self.assertEqual(len(form.errors), 3)
+
+    def test_clean_ok(self):
+        parent = factories.RegistryFactory()
+        data = dict(first_name='Bobby', last_name='Little', parent_1=parent.pk)
+        form = ChildForm(data)
+        self.assertTrue(form.is_valid())

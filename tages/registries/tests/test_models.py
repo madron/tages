@@ -106,3 +106,9 @@ class RegistryModelTest(TestCase):
             zip_code='W8',
         )
         self.assertEqual(registry.full_address, 'High Street Kinsington 1, London')
+
+
+class ChildModelTest(TestCase):
+    def test_str(self):
+        obj = factories.ChildFactory(first_name='Bobby', last_name='Little')
+        self.assertEqual(str(obj), 'Bobby Little')

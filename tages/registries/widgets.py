@@ -15,3 +15,7 @@ class RegistryCustomerSelect(AutocompleteSelect):
 class RegistrySupplierSelect(AutocompleteSelect):
     model = models.Registry
     url_name = 'admin:{app_label}_{model_name}_autocomplete_supplier'
+
+
+class ChildSelect(AutocompleteSelect):
+    model = models.Child

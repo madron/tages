@@ -16,5 +16,15 @@
         "external_id": "",
         "deactivation_date": null
     }
+},
+{
+    "model": "registries.child",
+    "pk": 1,
+    "fields": {
+        "first_name": "Bobby",
+        "last_name": "Little",
+        "description": "Bobby Little",
+        "parent_1": 1
+    }
 }
 ]

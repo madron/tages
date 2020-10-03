@@ -24,3 +24,13 @@ class RegistrySupplierAutocompleteView(RegistryAutocompleteView):
     def get_queryset(self):
         qs = super(RegistrySupplierAutocompleteView, self).get_queryset()
         return qs.filter(supplier=True)
+
+
+class ChildAutocompleteView(PermissionRequiredMixin, AutocompleteJsonView):
+    permission_required = 'registries.view_child'
+
+    def get_queryset(self):
+        qs = models.Child.objects.all()
+        if self.term:
+            qs = qs.filter(description__icontains=self.term)
+        return qs

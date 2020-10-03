@@ -72,4 +72,31 @@ class RegistryAdmin(VersionAdmin, ExportActionModelAdmin):
                 name='{app_label}_{model_name}_autocomplete_supplier'.format(**info)
             ),
         ]
-        return urls + super(RegistryAdmin, self).get_urls()
+        return urls + super().get_urls()
+
+
+@admin.register(models.Child)
+class ChildAdmin(VersionAdmin):
+    list_display = ('description', 'parent_1', 'parent_2')
+    list_display_links = ('description',)
+    search_fields = ('description',)
+    form = forms.ChildForm
+    fieldsets = [
+        (None, {
+            'fields': [
+                ('last_name', 'first_name',),
+                ('parent_1', 'parent_2',),
+            ]
+        }),
+    ]
+
+    def get_urls(self):
+        info = dict(app_label=self.model._meta.app_label, model_name=self.model._meta.model_name)
+        urls = [
+            url(
+                r'^autocomplete/$',
+                self.admin_site.admin_view(views.ChildAutocompleteView.as_view()),
+                name='{app_label}_{model_name}_autocomplete'.format(**info)
+            ),
+        ]
+        return urls + super().get_urls()
