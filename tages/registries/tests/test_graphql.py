@@ -51,3 +51,52 @@ class RegistryTest(GraphQLTestCase):
         self.assertResponseNoErrors(response)
         data = response.json()['data']
         self.assertEqual(data, {'registries': [{'description': 'Joe Black'}]})
+
+
+class ChildTest(GraphQLTestCase):
+    def test_description(self):
+        factories.ChildFactory(last_name='Little', first_name='Bobby')
+        response = self.query(
+            '''
+            {
+                children {
+                    description
+                }
+            }
+            ''',
+        )
+        self.assertResponseNoErrors(response)
+        data = response.json()['data']
+        self.assertEqual(data, {'children': [{'description': 'Bobby Little'}]})
+
+    def test_filter_id(self):
+        factories.ChildFactory(id=1, last_name='Little', first_name='Bobby')
+        factories.ChildFactory(id=2, last_name='Little', first_name='Steward')
+        response = self.query(
+            '''
+            query{
+                children (id: 2) {
+                    description
+                }
+            }
+            ''',
+        )
+        self.assertResponseNoErrors(response)
+        data = response.json()['data']
+        self.assertEqual(data, {'children': [{'description': 'Steward Little'}]})
+
+    def test_filter_description(self):
+        factories.ChildFactory(id=1, last_name='Little', first_name='Bobby')
+        factories.ChildFactory(id=2, last_name='Little', first_name='Steward')
+        response = self.query(
+            '''
+            query{
+                children (description_Icontains: "stew") {
+                    description
+                }
+            }
+            ''',
+        )
+        self.assertResponseNoErrors(response)
+        data = response.json()['data']
+        self.assertEqual(data, {'children': [{'description': 'Steward Little'}]})
