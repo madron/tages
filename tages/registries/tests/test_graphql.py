@@ -11,30 +11,18 @@ class RegistryTest(GraphQLTestCase):
             '''
             query{
                 registries {
-                    description
+                    edges {
+                        node {
+                            description
+                        }
+                    }
                 }
             }
             ''',
         )
         self.assertResponseNoErrors(response)
         data = response.json()['data']
-        self.assertEqual(data, {'registries': [{'description': 'Joe Black'}]})
-
-    def test_filter_id(self):
-        factories.RegistryFactory(id=1, registry_type='private', last_name='Black', first_name='Joe')
-        factories.RegistryFactory(id=2, registry_type='private', last_name='Brown', first_name='John')
-        response = self.query(
-            '''
-            query{
-                registries (id: 2) {
-                    description
-                }
-            }
-            ''',
-        )
-        self.assertResponseNoErrors(response)
-        data = response.json()['data']
-        self.assertEqual(data, {'registries': [{'description': 'John Brown'}]})
+        self.assertEqual(data, {'registries': {'edges': [{'node': {'description': 'Joe Black'}}]}})
 
     def test_filter_description(self):
         factories.RegistryFactory(id=1, registry_type='private', last_name='Black', first_name='Joe')
@@ -43,14 +31,18 @@ class RegistryTest(GraphQLTestCase):
             '''
             query{
                 registries (description_Icontains: "bl") {
-                    description
+                    edges {
+                        node {
+                            description
+                        }
+                    }
                 }
             }
             ''',
         )
         self.assertResponseNoErrors(response)
         data = response.json()['data']
-        self.assertEqual(data, {'registries': [{'description': 'Joe Black'}]})
+        self.assertEqual(data, {'registries': {'edges': [{'node': {'description': 'Joe Black'}}]}})
 
 
 class ChildTest(GraphQLTestCase):
@@ -58,32 +50,20 @@ class ChildTest(GraphQLTestCase):
         factories.ChildFactory(last_name='Little', first_name='Bobby')
         response = self.query(
             '''
-            {
-                children {
-                    description
-                }
-            }
-            ''',
-        )
-        self.assertResponseNoErrors(response)
-        data = response.json()['data']
-        self.assertEqual(data, {'children': [{'description': 'Bobby Little'}]})
-
-    def test_filter_id(self):
-        factories.ChildFactory(id=1, last_name='Little', first_name='Bobby')
-        factories.ChildFactory(id=2, last_name='Little', first_name='Steward')
-        response = self.query(
-            '''
             query{
-                children (id: 2) {
-                    description
+                children {
+                    edges {
+                        node {
+                            description
+                        }
+                    }
                 }
             }
             ''',
         )
         self.assertResponseNoErrors(response)
         data = response.json()['data']
-        self.assertEqual(data, {'children': [{'description': 'Steward Little'}]})
+        self.assertEqual(data, {'children': {'edges': [{'node': {'description': 'Bobby Little'}}]}})
 
     def test_filter_description(self):
         factories.ChildFactory(id=1, last_name='Little', first_name='Bobby')
@@ -92,11 +72,15 @@ class ChildTest(GraphQLTestCase):
             '''
             query{
                 children (description_Icontains: "stew") {
-                    description
+                    edges {
+                        node {
+                            description
+                        }
+                    }
                 }
             }
             ''',
         )
         self.assertResponseNoErrors(response)
         data = response.json()['data']
-        self.assertEqual(data, {'children': [{'description': 'Steward Little'}]})
+        self.assertEqual(data, {'children': {'edges': [{'node': {'description': 'Steward Little'}}]}})
