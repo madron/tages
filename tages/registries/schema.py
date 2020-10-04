@@ -1,8 +1,7 @@
 import graphene
-# import graphene_django_optimizer as gql_optimizer
 from graphene.relay import Node
 from graphene_django import DjangoObjectType
-from graphene_django.filter import DjangoFilterConnectionField
+from tages.graphql.utils import DjangoFilterOptimizedConnectionField
 from . import models
 
 
@@ -32,6 +31,6 @@ class ChildNode(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     # registry = Node.Field(RegistryNode)
-    registries = DjangoFilterConnectionField(RegistryNode)
+    registries = DjangoFilterOptimizedConnectionField(RegistryNode)
     # child = Node.Field(ChildNode)
-    children = DjangoFilterConnectionField(ChildNode)
+    children = DjangoFilterOptimizedConnectionField(ChildNode)
