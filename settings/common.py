@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'reversion',
     'import_export',
     'graphene_django',
+    'django_filters',
     # tages
     'tages.authentication',
     'tages.countries',
