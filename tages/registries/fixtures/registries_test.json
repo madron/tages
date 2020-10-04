@@ -3,7 +3,7 @@
     "model": "registries.registry",
     "pk": 1,
     "fields": {
-        "type": "private",
+        "registry_type": "private",
         "country": "US",
         "business_name": "",
         "last_name": "Black",

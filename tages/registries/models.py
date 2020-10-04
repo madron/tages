@@ -24,7 +24,7 @@ class RegistryActiveManager(models.Manager):
 
 
 class Registry(models.Model):
-    type = models.CharField(_('type'), max_length=50, choices=REGISTRY_TYPES, default='private', db_index=True)
+    registry_type = models.CharField(_('registry type'), max_length=50, choices=REGISTRY_TYPES, default='private', db_index=True)
     country = CountryField(_('country'), default=COUNTRIES_DEFAULT, db_index=True)
     business_name = models.CharField(_('business name'), max_length=200, blank=True, null=True, db_index=True)
     last_name = models.CharField(_('last name'), max_length=200, blank=True, db_index=True)
@@ -70,7 +70,7 @@ class Registry(models.Model):
 
     def save(self, *args, **kwargs):
         # Description
-        if self.type == 'private':
+        if self.registry_type == 'private':
             self.description = ' '.join((self.first_name, self.last_name)).strip()
         else:
             self.description = self.business_name

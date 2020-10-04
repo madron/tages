@@ -71,8 +71,8 @@ class RegistryAdminTest(TestCase):
         self.assertContains(response, url)
 
     def test_autocomplete(self):
-        factories.RegistryFactory(customer=False, supplier=False, type='company', business_name='aaa')
-        factories.RegistryFactory(customer=False, supplier=False, type='company', business_name='bbb')
+        factories.RegistryFactory(customer=False, supplier=False, registry_type='company', business_name='aaa')
+        factories.RegistryFactory(customer=False, supplier=False, registry_type='company', business_name='bbb')
         data = dict(term='aa')
         url = reverse('{}_autocomplete'.format(self.name))
         response = self.client.get(url, data)
@@ -87,8 +87,8 @@ class RegistryAdminTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_autocomplete_customer(self):
-        factories.RegistryFactory(customer=True, supplier=False, type='company', business_name='aaa')
-        factories.RegistryFactory(customer=True, supplier=False, type='company', business_name='bbb')
+        factories.RegistryFactory(customer=True, supplier=False, registry_type='company', business_name='aaa')
+        factories.RegistryFactory(customer=True, supplier=False, registry_type='company', business_name='bbb')
         data = dict(term='aa')
         url = reverse('{}_autocomplete_customer'.format(self.name))
         response = self.client.get(url, data)
@@ -103,8 +103,8 @@ class RegistryAdminTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_autocomplete_supplier(self):
-        factories.RegistryFactory(customer=False, supplier=True, type='company', business_name='aaa')
-        factories.RegistryFactory(customer=False, supplier=True, type='company', business_name='bbb')
+        factories.RegistryFactory(customer=False, supplier=True, registry_type='company', business_name='aaa')
+        factories.RegistryFactory(customer=False, supplier=True, registry_type='company', business_name='bbb')
         data = dict(term='aa')
         url = reverse('{}_autocomplete_supplier'.format(self.name))
         response = self.client.get(url, data)

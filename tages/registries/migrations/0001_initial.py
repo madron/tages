@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='Registry',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('private', 'Private'), ('company', 'Company'), ('individual_company', 'Individual company'), ('public_administration', 'Public administration'), ('organization', 'Organization')], db_index=True, default='private', max_length=50, verbose_name='type')),
+                ('registry_type', models.CharField(choices=[('private', 'Private'), ('company', 'Company'), ('individual_company', 'Individual company'), ('public_administration', 'Public administration'), ('organization', 'Organization')], db_index=True, default='private', max_length=50, verbose_name='registry type')),
                 ('business_name', models.CharField(blank=True, db_index=True, max_length=200, null=True, verbose_name='business name')),
                 ('last_name', models.CharField(blank=True, db_index=True, max_length=200, verbose_name='last name')),
                 ('first_name', models.CharField(blank=True, db_index=True, max_length=200, verbose_name='first name')),

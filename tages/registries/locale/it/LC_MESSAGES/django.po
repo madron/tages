@@ -100,7 +100,7 @@ msgid "companies"
 msgstr "aziende"
 
 #: registries/models.py:42
-msgid "type"
+msgid "registry_type"
 msgstr "tipo"
 
 #: registries/models.py:43 registries/models.py:129 registries/models.py:145

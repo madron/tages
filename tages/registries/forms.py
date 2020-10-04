@@ -8,7 +8,7 @@ from . import widgets
 
 class RegistryForm(forms.ModelForm):
     field_order = [
-        'type',
+        'registry_type',
         'country',
         'business_name',
         'last_name',
@@ -50,7 +50,7 @@ class RegistryForm(forms.ModelForm):
 
     def clean_business_name(self):
         value = self.cleaned_data['business_name']
-        registry_type = self.cleaned_data.get('type', None)
+        registry_type = self.cleaned_data.get('registry_type', None)
         if registry_type in ['company', 'individual_company', 'public_administration', 'organization']:
             if not value:
                 raise FieldRequiredError()
@@ -58,7 +58,7 @@ class RegistryForm(forms.ModelForm):
 
     def clean_last_name(self):
         value = self.cleaned_data['last_name']
-        registry_type = self.cleaned_data.get('type', None)
+        registry_type = self.cleaned_data.get('registry_type', None)
         if registry_type in ('private', 'individual_company'):
             if not value:
                 raise FieldRequiredError()
@@ -66,7 +66,7 @@ class RegistryForm(forms.ModelForm):
 
     def clean_first_name(self):
         value = self.cleaned_data['first_name']
-        registry_type = self.cleaned_data.get('type', None)
+        registry_type = self.cleaned_data.get('registry_type', None)
         if registry_type in ('private', 'individual_company'):
             if not value:
                 raise FieldRequiredError()
@@ -77,7 +77,7 @@ class RegistryForm(forms.ModelForm):
         country = self.cleaned_data.get('country', None)
         # Italy
         if country == 'IT':
-            registry_type = self.cleaned_data.get('type', None)
+            registry_type = self.cleaned_data.get('registry_type', None)
             required = False
             if registry_type in ['company', 'individual_company']:
                 required = True
@@ -89,7 +89,7 @@ class RegistryForm(forms.ModelForm):
 
     def clean_social_security_number(self):
         value = self.cleaned_data['social_security_number']
-        registry_type = self.cleaned_data.get('type', None)
+        registry_type = self.cleaned_data.get('registry_type', None)
         country = self.cleaned_data.get('country', None)
         # Italy
         if country == 'IT':
